@@ -9,8 +9,11 @@ import java.util.List;
 
 public class ConnTest {
 	    public static void main(String[] args) {
-	    	String vendor = "oracle";
-	    	String.format("Constans.%s_URL", vendor.toUpperCase());
+	    	/*String sql = "SELECT TEAM_ID, PLAYER_NAME, HEIGHT FROM PLAYER\n" WHERE TEAM_ID LIKE '%s'
+					"    AND HEIGHT >= %s\n" + 
+					"    AND PLAYER_NAME LIKE '%s%'";
+	    	String result = String.format(sql, "K03","170","DD");
+	    	System.out.println(result);*/
 		/*Connection conn = null;
 		Statement state = null;
 		ResultSet rs = null;

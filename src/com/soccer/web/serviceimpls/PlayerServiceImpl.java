@@ -31,5 +31,9 @@ public class PlayerServiceImpl implements PlayerService {
 	public List<PlayerBean> findPlayerByTeamIdAndHeightAndName(PlayerBean player) {
 		return PlayerDAOImpl.getInstance().selectPlayerByTeamIdAndHeightAndName(player);
 	}
+	
+	public boolean login(PlayerBean param) {
+		return PlayerDAOImpl.getInstance().login(param);
+	}
 
 }

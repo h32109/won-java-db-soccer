@@ -17,7 +17,7 @@ public class PlayerDAOImpl implements PlayerDAO {
 
 	@Override
 	public List<String> selectPositions() {
-		List<String> list = null;
+		List<String> list = new ArrayList<>();
 		try {
 			String sql = "SELECT DISTINCT POSITION position\r\n" + 
 					"FROM PLAYER";
@@ -26,7 +26,6 @@ public class PlayerDAOImpl implements PlayerDAO {
 									.getConnection()
 									.prepareStatement(sql);
 			ResultSet rs = state.executeQuery(sql);
-			list = new ArrayList<>();
 			while (rs.next()) {
 				list.add(rs.getString("position"));
 			}
@@ -39,19 +38,18 @@ public class PlayerDAOImpl implements PlayerDAO {
 
 	@Override
 	public List<String> selectPlayerByPostionAndTeamId(PlayerBean player) {
-		List<String> list = null;
+		List<String> list = new ArrayList<>();
 		try {
+			String sql = "SELECT PLAYER_NAME \"name\"\r\n" + 
+					"FROM PLAYER\r\n" + 
+					"WHERE TEAM_ID LIKE ?\r\n" + 
+					"    AND POSITION LIKE ?";
 			PreparedStatement state = DatabaseFactory.createDatabase(Constants.VENDOR)
 										.getConnection()
-										.prepareStatement("SELECT PLAYER_NAME \"name\"\r\n" + 
-												"FROM PLAYER\r\n" + 
-												"WHERE TEAM_ID LIKE '"+player.getTeamId()+"'\r\n" + 
-												"    AND POSITION LIKE '"+player.getPosition()+"'".toString());
-			ResultSet rs = state.executeQuery("SELECT PLAYER_NAME \"name\"\r\n" + 
-					"FROM PLAYER\r\n" + 
-					"WHERE TEAM_ID LIKE '"+player.getTeamId()+"'\r\n" + 
-					"    AND POSITION LIKE '"+player.getPosition()+"'");
-			list = new ArrayList<>();
+										.prepareStatement(sql);
+			state.setString(1, player.getTeamId());
+			state.setString(2, player.getPosition());
+			ResultSet rs = state.executeQuery();
 			while (rs.next()) {
 				list.add(rs.getString("name"));
 			}
@@ -64,28 +62,38 @@ public class PlayerDAOImpl implements PlayerDAO {
 
 	@Override
 	public List<PlayerBean> selectPlayerByTeamIdAndHeightAndName(PlayerBean player) {
-		List<PlayerBean> list = null;
+		List<PlayerBean> list = new ArrayList<PlayerBean>();
+		System.out.println("---------------3---------------");
 		try {
+			String sql = "SELECT *\r\n" + 
+					"FROM PLAYER\r\n" + 
+					"WHERE TEAM_ID LIKE ?\r\n" + 
+					"    AND HEIGHT >= ?\r\n" + 
+					"    AND PLAYER_NAME LIKE ?";
 			PreparedStatement state = DatabaseFactory.createDatabase(Constants.VENDOR)
 														.getConnection()
-														.prepareStatement("SELECT TEAM_ID, PLAYER_NAME, HEIGHT\r\n" + 
-																						"FROM PLAYER\r\n" + 
-																						"WHERE TEAM_ID LIKE '"+player.getTeamId()+"'\r\n" + 
-																						"    AND HEIGHT >= "+ player.getHeight() +"\r\n" + 
-																						"    AND PLAYER_NAME LIKE '"+player.getPlayerName()+"%'".toString());
-			ResultSet rs = state.executeQuery("SELECT TEAM_ID, PLAYER_NAME, HEIGHT\r\n" + 
-						"FROM PLAYER\r\n" + 
-						"WHERE TEAM_ID LIKE '"+player.getTeamId()+"'\r\n" + 
-						"    AND HEIGHT >= "+ player.getHeight() +"\r\n" + 
-						"    AND PLAYER_NAME LIKE '"+player.getPlayerName()+"%'");
-			list = new ArrayList<PlayerBean>();
+														.prepareStatement(sql);
+			state.setString(1, player.getTeamId());
+			state.setString(2, player.getHeight());
+			state.setString(3, player.getPlayerName()+"%");
+			ResultSet rs = state.executeQuery();
 			while(rs.next()) {
-			PlayerBean param = new PlayerBean ();
-			param.setTeamId(rs.getString(1));
-			param.setHeight(rs.getString(3));
-			param.setPlayerName(rs.getString(2));
-			System.out.println(param.toString());
-			list.add(param);
+				PlayerBean param = new PlayerBean ();
+				param.setBackNo(rs.getString("BACK_NO"));
+				param.setBirthDate(rs.getString("BIRTH_DATE"));
+				param.setEPlayerName(rs.getString("E_PLAYER_NAME"));
+				param.setHeight(rs.getString("HEIGHT"));
+				param.setJoinYyyy(rs.getString("JOIN_YYYY"));
+				param.setNation(rs.getString("NATION"));
+				param.setNickName(rs.getString("NICKNAME"));
+				param.setPlayerName(rs.getString("PLAYER_NAME"));
+				param.setSolar(rs.getString("SOLAR"));
+				param.setTeamId(rs.getString("TEAM_ID"));
+				param.setWeight(rs.getString("WEIGHT"));
+				param.setHeight(rs.getString("HEIGHT"));
+				param.setPosition(rs.getString("POSITION"));
+				System.out.println(param.toString());
+				list.add(param);
 			}
 			state.close();
 		} catch (Exception e) {
@@ -94,5 +102,31 @@ public class PlayerDAOImpl implements PlayerDAO {
 				
 		return list;
 	}
+	@Override
+	public boolean login(PlayerBean param) {
+		String id = param.getPlayerId(), pw = param.getSolar(), resultid = "" , resultpw = "";
+		boolean flag = false;
+		try {
+			String sql = "SELECT PLAYER_ID, SOLAR\r\n" + 
+					"FROM PLAYER\r\n" + 
+					"WHERE PLAYER_ID LIKE ?" ;
+			PreparedStatement state = DatabaseFactory.createDatabase(Constants.VENDOR)
+					.getConnection().prepareStatement(sql);
+			state.setString(1, param.getPlayerId());
+			ResultSet rs = state.executeQuery();
+			while(rs.next()) {
+				resultid = rs.getString(1);
+				resultpw = rs.getString(2);
+			}
+			state.close();
+			if(id.equals(resultid)&&pw.equals(resultpw)) {
+				flag = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return flag;
+	}
+	
 
 }

@@ -1,7 +1,11 @@
 package com.soccer.web.pool;
 
 public class Constants {
-	public static final String VIEW_PATH = "WEB-INF/views/%s/%s.jsp"
+	public static final String SINGLE_PATH = "WEB-INF/views/%s.jsp"
+			
+											,DOUBLE_PATH = "WEB-INF/views/%s/%s.jsp"
+											
+											,TRIPLE_PATH = "WEB-INF/views/%s/%s/%s.jsp"
 	
 											,ORACLE_URL = "jdbc:oracle:thin:@localhost:1521:xe"
 	
