@@ -26,7 +26,7 @@
 		</table>
 	</form>
 </div>
-<div></div>
+<div>8</div>
 <div></div>
 <div><h3 id = "join_a" ><a id="a_join" href="#">회원가입</a></h3></div>
 <div></div>
