@@ -10,4 +10,5 @@ public interface PlayerDAO {
 	public List<String> selectPlayerByPostionAndTeamId(PlayerBean player);
 	public List<PlayerBean> selectPlayerByTeamIdAndHeightAndName(PlayerBean player);
 	public boolean login(PlayerBean param);
+	public void joinPlayer(PlayerBean param);
 }

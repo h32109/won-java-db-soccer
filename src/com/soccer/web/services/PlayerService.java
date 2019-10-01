@@ -12,4 +12,5 @@ public interface PlayerService {
 	public List<String> findPlayerByPostionAndTeamId(PlayerBean player);
 	//5. 팀아이디, 키, 이름으로 선수정보
 	public List<PlayerBean> findPlayerByTeamIdAndHeightAndName(PlayerBean player);
+	public void playerjoin(PlayerBean param);
 }

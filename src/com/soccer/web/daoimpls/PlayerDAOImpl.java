@@ -127,6 +127,32 @@ public class PlayerDAOImpl implements PlayerDAO {
 		}
 		return flag;
 	}
+	@Override
+	public void joinPlayer(PlayerBean param) {
+		System.out.println("회원가입"+param);
+		try {
+			String sql = "INSERT INTO PLAYER(PLAYER_ID,PLAYER_NAME,TEAM_ID,E_PLAYER_NAME, NICKNAME, JOIN_YYYY,POSITION,BACK_NO,NATION,BIRTH_DATE,SOLAR,HEIGHT,WEIGHT)\r\n" + 
+					"VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)\r\n"; 
+			PreparedStatement state = DatabaseFactory.createDatabase(Constants.VENDOR)
+					.getConnection().prepareStatement(sql);
+			state.setString(1, param.getPlayerId());
+			state.setString(2, param.getPlayerName());
+			state.setString(3, param.getTeamId());
+			state.setString(4, param.getEPlayerName());
+			state.setString(5, param.getNickName());
+			state.setString(6, param.getJoinYyyy());
+			state.setString(7, param.getPosition());
+			state.setString(8, param.getBackNo());
+			state.setString(9, param.getNation());
+			state.setString(10, param.getBirthDate());
+			state.setString(11, param.getSolar());
+			state.setString(12, param.getHeight());
+			state.setString(13, param.getWeight());
+			ResultSet rs = state.executeQuery();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 
 }

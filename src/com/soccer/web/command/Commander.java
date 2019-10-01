@@ -16,6 +16,7 @@ public class Commander {
 		case READ : c = new ReadCommand(request);break;
 		case MOVE : c = new MoveCommand(request);break;
 		case LOGIN : c = new LoginCommand(request);break;
+		case CREATE : c = new CreateCommand(request);break;
 		default:
 			break;
 		}

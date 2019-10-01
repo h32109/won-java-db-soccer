@@ -28,9 +28,22 @@ public class FacadeController extends HttpServlet {
 					(r.toString().equals("CTX") ? ""  : String.format("/resources/%s", r.toString().toLowerCase())));
 		}
 		
+		if(request.getParameter("page")!=null) {
+			switch (request.getParameter("page")) {
+			case "join":
+				request.setAttribute("page", "join");
+				break;
+			default:
+				request.setAttribute("page", "login");
+				break;
+			}
+		}else {request.setAttribute("page", "login");}
+		
+		
+		
 		request
 		.getRequestDispatcher(String.format(Constants.DOUBLE_PATH,
-				request.getServletPath().substring(1,request.getServletPath().indexOf(".")),"login"))
+				request.getServletPath().substring(1,request.getServletPath().indexOf(".")),"main"))
 		.forward(request, response);
 	}
 

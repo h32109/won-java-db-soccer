@@ -12,17 +12,6 @@ public class Command implements Order{
 	protected String domain, view, page, action;
 	@Override
 	public void execute() {
-		switch (page) {
-		case "home" :
-			this.domain = "facade";
-			break;
-		case "login":
-			this.domain =  "facade";
-		case "join":
-			this.domain =  "facade";
-			break;
-		}
 		this.view = String.format(Constants.DOUBLE_PATH, domain, page);
-
 	}
 }

@@ -16,11 +16,12 @@ import com.soccer.web.domains.PlayerBean;
 import com.soccer.web.serviceimpls.PlayerServiceImpl;
 
 
-@WebServlet("/player.doit")
+@WebServlet("/player.do")
 public class PlayerController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("player.do 들어옴");
 		Reciever.init(request);
 		Sender.forward(request, response);
 	}

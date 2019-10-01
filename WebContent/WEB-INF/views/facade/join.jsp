@@ -1,14 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<jsp:include page="../common/head.jsp"></jsp:include>
-	<div></div>
 	<div id = "join_term"><h3>회원가입</h3></div>
-	<div></div>
-	<div></div>
-	<form id = "join_form" action="${ctx}/player.do}">
+	<form id = "join_form" >
 	<div id = "join_spac" >
 		<div>playerId</div>
-		<div class = "input_join"><input type="text" name = "playerId" /></div>
+		<div class = "input_join"><input id = "join_playerId" type="text" name = "playerId" /></div>
+		<div>playerName</div>
+		<div class = "input_join"><input type="text" name = "playerName"/></div>
 		<div>teamId</div>
 		<div class = "input_join"><input type="text" name = "teamId" /></div>
 		<div>ePlayerName</div>
@@ -26,23 +24,18 @@
 		<div>birthDate</div>
 		<div class = "input_join"><input type="text" name = "birthDate" /></div>
 		<div>solar</div>
-		<div class = "input_join"><input type="text" name = "solar" /></div>
+		<div class = "input_join"><input id = "join_solar" type="text" name = "solar" /></div>
 		<div>height</div>
 		<div class = "input_join"><input type="text" name = "height" /></div>
 		<div>weight</div>
 		<div class = "input_join"><input type="text" name = "weight" /></div>
 	</div>
+	<div ><h3><input id = "join_btn" type="button" value = "가입하기"  /></h3></div>
+		<input type="hidden" name = "action" value = "create" />
+	<input type="hidden" name = "page" value = "login" />
 	</form>
-	<div></div>
-	<div></div>
-	<div id = "submit_join">
-	<div><h3><input type="submit" value = "가입하기"  /></h3></div>
-	<div><h3><a id = "back" href="#">뒤로가기</a></h3></div>
-	</div>
-	<div></div>
+	<div id = "join_back"><h3><a id = "back" href="#">뒤로가기</a></h3></div>
 
-<h3><a id = "back" href="#">뒤로가기</a></h3>
 <script>
 app.init('${ctx}');
 </script>
-<jsp:include page="../common/foot.jsp"></jsp:include>

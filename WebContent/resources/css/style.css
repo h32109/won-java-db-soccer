@@ -9,11 +9,15 @@ html, body {
 	display : grid;
 	width: 100%;
 	height : 100%;
-	background-color: olive;
+	background-color: AntiqueWhite ;
 	grid-template-columns : 35% 30% 35%;
-	grid-template-rows : 35% 30% 35%;
+	grid-template-rows : 10% 100% 10%;
 }
-/*  .wrapper div{border : 1px dotted black}*/
+/*.wrapper div{border : 1px dotted black}*/
+
+#main_term{
+	margin: 0 auto;
+}
 
 #login_tab{
 	 width:80%;
@@ -21,7 +25,7 @@ html, body {
 	 margin : 10% auto;
 	 border : 1px solid black;}
 #login_tab tr{width:100%;height : 50%;border : 1px solid black;}
-#soccer_intro{width: 100%;height: 100%;}
+#soccer_intro{padding-left : 200px; margin: 0 auto; width : 30%;height: 100%;}
 #login_tab tr td{width: 100%;height: 50%;border : 1px solid black;}
 #join_a {width: 100px; margin: 0 auto;}
 .input_text{height : 50px;width: 80%;}
@@ -32,22 +36,32 @@ html, body {
 	width : 100%;
 	height: 100%;
 	grid-template-columns : 20% 80%;
-	grid-template-rows : 8% 8% 8% 8% 8% 8% 8% 8% 8% 8% 8% 8%;
+	grid-template-rows : 7% 7% 7% 7% 7% 7% 7% 7% 7% 7% 7% 7% 7%;
 	
 }
 
-.input_join{height : 50px;width: 80%;}
-
-#submit_join{
-	display : grid;
-	width : 100%;
-	height: 100%;
-	grid-template-columns : 50% 50%;
-	grid-template-rows : 100%;
-}
+.input_join{height : 50px;width: 80%; margin: 0 auto;}
 
 #join_term{
 	margin: 0 auto;
-	padding-top : 200px;
-	padding-right : 200px;
+	padding-right : 250px;
+}
+
+.container{
+	display : grid;
+	width : 100%;
+	height: 100%;
+	grid-template-rows : 10% 90%;
+}
+
+.content{
+	display: grid;
+	width: 100%;
+	height: 100%;
+	grid-template-rows : 10% 60% 10% 10%; 
+}
+/*.container div{border : 2px dotted black}*/
+
+#join_back{
+	padding-top : 100px;
 }

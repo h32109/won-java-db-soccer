@@ -36,4 +36,9 @@ public class PlayerServiceImpl implements PlayerService {
 		return PlayerDAOImpl.getInstance().login(param);
 	}
 
+	@Override
+	public void playerjoin(PlayerBean param) {
+		PlayerDAOImpl.getInstance().joinPlayer(param);
+	}
+
 }
